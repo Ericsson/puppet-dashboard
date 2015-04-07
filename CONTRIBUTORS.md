@@ -16,6 +16,7 @@ Contributors
 * Evan Sparkman <evansparkman@esdezines.(none)>
 * Filip Hrbek <filip.hrbek@gmail.com>
 * Glenn Poston <gposton1040@gmail.com>
+* Harkanwal Singh <harkanwal.singh@ericsson.com>
 * Ian Ward Comfort <icomfort@stanford.edu>
 * Igal Koshevoy <igal@pragmaticraft.com>
 * Jacob Helwig <jacob@puppetlabs.com>
