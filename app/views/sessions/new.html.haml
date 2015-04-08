@@ -1,0 +1,11 @@
+#account
+  .header
+    %h2 Login
+  .item
+    = form_tag session_path, :id=>"signin-form" do
+      = label_tag :username
+      = text_field_tag :username,nil,:autocomplete => "off"
+      = label_tag :password
+      = password_field_tag :password
+      %br
+      = submit_tag 'Log in'

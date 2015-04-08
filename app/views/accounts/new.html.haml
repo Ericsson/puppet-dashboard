@@ -1,0 +1,18 @@
+#sidebar= render 'shared/node_manager_sidebar'
+#main
+  .header
+    %h2 Add User
+  .item
+    = form_for @user, :url => accounts_path, :html =>{:id => 'new-account-form' } do |f|
+      = label_tag "Username"
+      = f.text_field :username
+      = hidden_field_tag :notice,'check'
+      = label_tag :user_type
+      - if current_user.user_type == 1
+        = f.select :user_type, admin_member_type, {:prompt => true}, :class => "required"
+      - elsif current_user.user_type == 4
+        = f.select :user_type, super_member_type, {:prompt => true}, :class => "required"
+      %br
+      = submit_tag 'Add', :disable_with => "Adding…"
+      or
+      = link_to 'Cancel', accounts_path

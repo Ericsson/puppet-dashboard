@@ -1,0 +1,18 @@
+#sidebar= render 'shared/node_manager_sidebar'
+#main
+  .header
+    %h2 Change Access
+  .item
+    = form_for @user, :url => account_path(@user), :html =>{:method => :put} do |f|
+      = label_tag :username
+      = @user.username
+      = label_tag :user_type
+      - if current_user.admin?
+        = f.select :user_type, admin_member_type, {:prompt => true}
+      - if current_user.super_admin?
+        = f.select :user_type, super_member_type, {:prompt => true}
+        
+      %p
+      = submit_tag 'Change', :disable_with => "Changing…"
+      or
+      = link_to 'Cancel', accounts_path

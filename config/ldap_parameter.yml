@@ -1,0 +1,7 @@
+---
+ad_treebase:  treebase_to_make_search_on_LDAP_server #DC=example,DC=com
+ad_password: password
+ad_host: host_ip
+ad_username: username_with_treebase #CN=test,OU=ee,DC=company,DC=example,DC=com
+ad_port: port_number
+login_auth: 0 # 1 for LDAP authentication and 0 for Mysql backend

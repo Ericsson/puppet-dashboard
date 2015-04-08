@@ -1,0 +1,59 @@
+#sidebar= render 'shared/node_manager_sidebar'
+#main
+  #search
+    = form_tag search_accounts_path,:method => :get do
+      = label_tag :user
+      = text_field_tag :user, params[:user]
+      = submit_tag "search", :disable_with => "Searching..."
+  .header
+    %h2 
+      Manage Users
+      %span.count== (#{@users.total_entries})
+      #export
+        = link_to "Export", "", :class => "export_text"
+        %ul#export-list
+          %li
+            = link_to "Export as CSV", url_for(:controller => "accounts", :action => "index", :user => params[:user],:format => 'csv'), :class => "export_link"
+      #export.add_user
+        = link_to "Add User", new_account_path
+
+  .item
+    %table.inspector
+      %thead
+        %tr
+          %th First Name
+          %th Last Name
+          %th Username
+          %th Email
+          %th User Type
+          %th Action
+      %tbody
+        - if @users.present?
+          - for user in @users
+            - if (user and !user.super_admin?) or (user and current_user.super_admin?)
+              %tr{:class => user.super_admin? ? 'super_admin' : ''}
+                %td= user.first_name
+                %td= user.last_name
+                %td= user.username
+                %td= user.email
+                %td= user.type_of_user
+                -unless user.super_admin? or (user.admin? and current_user.admin?)
+                  %td 
+                    = link_to "Change Access", edit_account_path(user)
+                    |
+                    = link_to "Reset Password", reset_password_automatically_account_path(user),:confirm => @val ? "Are you sure you want to reset this user password?": "It will not reset LDAP Password. Are you sure you want to reset this user password?"
+                    - if current_user.super_admin?
+                      |
+                      = link_to "Delete", account_path(user), :method => :delete, :confirm => "Are you sure you want to delete this user?"
+                -else
+                  %td &nbsp;
+        - else
+          %td.empty{:colspan => 12}
+            = describe_no_matches_for :users
+      %tfoot
+        %tr
+          %td{:colspan => 12}
+            - if params[:user]
+              = will_paginate @users, :params => {:user => params[:user]}
+            - else
+              = will_paginate @users
