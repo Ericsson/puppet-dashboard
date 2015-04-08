@@ -45,5 +45,6 @@ Contributors
 * Rick Bradley <rick@rickbradley.com>
 * Rob <rob@ldg.net>
 * Saj Goonatilleke <sg@redu.cx>
+* Sonal Singhal <sonal.singhal@ericsson.com>
 * Scott Smith <scott@ohlol.net>
 * Zachary Adam Kaplan <razic@viralkitty.com>
