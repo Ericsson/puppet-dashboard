@@ -26,3 +26,174 @@
  *= require jquery.jqplot
  *= require popups
  */
+#account{
+  width:300px;
+  margin:10px auto;
+}
+#account-navigation{
+  float: right;
+  text-transform: capitalize;
+}
+#account .errors.element{
+  width:250px;
+}
+
+#search{
+  text-align:right;
+}
+#search label{
+  display:inline;
+  text-transform: capitalize;
+}
+
+
+body a.button,
+  body button, input[type='submit'] {
+    -webkit-border-radius: 0.35em 0.35em 0.35em 0.35em;
+    -moz-border-radius: 0.35em 0.35em 0.35em 0.35em;
+    border-radius: 0.35em 0.35em 0.35em 0.35em;
+    background: #5c80a8;
+    background: -moz-linear-gradient(top, #7d9aba, #496788);
+    background: -webkit-gradient(linear, center top, center bottom, from(#7d9aba), to(#496788));
+    border: 1px solid #DDD;
+    border-color: #CCC #AAA #AAA #CCC;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 0.25em;
+    padding: .15em .65em;
+    text-transform: capitalize;
+    white-space: nowrap; }
+    body a.button:hover,
+    body button:hover {
+      text-decoration: none;
+      color: #FFFFCC;
+      background: #7d9aba -moz-linear-gradient(top, #9fb4cb, #5c80a8);
+      background: #7d9aba -webkit-gradient(linear, 0% 0%, 0% 100%, from(#9fb4cb, to(#5c80a8))); }
+    body a.button:active,
+    body button:active {
+      background: #496788 -moz-linear-gradient(top, #5c80a8, #374e67);
+      background: #496788 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5c80a8, to(#374e67))); }
+
+.notice{
+  color:green;
+  padding: 0.5em 1em;
+  background-color:#BBFFA2;
+}
+
+#export a{
+  text-decoration: none;
+}
+
+#export > a{
+  background: transparent url(/images/down.png) no-repeat right center;
+  margin-right: 10px;
+  padding: 4px 22px 0 0;
+  font-weight: bold;
+}
+#export  {
+  font-size:12px;
+  position: absolute;
+  right: 40px;
+  top: 0;
+}
+
+#export.add_user{
+  right:110px;
+}
+
+#export-list{
+  display: none;
+  position: absolute;
+  right: 0;
+  width: 80px;
+  background: none repeat scroll 0 0 #FFFFFF;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 3px 1px #CCCCCC;
+  z-index: 10;
+}
+#export-list li{
+  float: left;
+  list-style: none;
+}
+#export-list li a{
+  float: none;
+  display: block;
+  padding: 0;
+  font-weight: normal;
+}
+#export:hover #export-list{
+  display: block;
+}
+
+td #export{
+  right:40px;
+ /* top:12px;*/
+}
+/*
+  #export-detail-list{
+  display: none;
+  position: absolute;
+  right: 0;
+  width: 160px;
+  background: none repeat scroll 0 0 #FFFFFF;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 3px 1px #CCCCCC;
+  z-index: 10;
+}
+#export-detail-list li{
+  float: left;
+  list-style: none;
+}
+#export-detail-list li a{
+  float: none;
+  display: block;
+  padding: 0;
+  font-weight: normal;
+}*/
+#export:hover #export-detail-list{
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.mu_menu{
+    display:none;
+    width:175px;
+    position: absolute;
+    z-index: 100;
+    border: 1px solid #ccc;
+    border-radius: 0.35em 0.35em 0.35em 0.35em;
+    box-shadow: 1px 1px 1px 1px #ccc;
+    background-color: #e8eef0;
+}
+
+.mu_menu li {
+  margin-right: 0;
+}
+
+.mu_menu li a {
+    color:669999;
+    text-decoration:none;
+    padding:6px;
+    display:block;
+}
+
+.mu_menu li a:hover {
+    padding:6px;
+    font-weight:bold;
+    color: 669999;
+}
+

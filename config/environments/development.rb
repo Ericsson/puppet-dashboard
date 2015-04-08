@@ -34,4 +34,10 @@ PuppetDashboard::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+#config.session_store(:cookie_store, {:key => '_larry_session',
+# :secret => 'b1bbd28f6f9ebfc25f09da9bff4643f75d5ad8c8da8b60234168c81cd6d32c15e5e5421196ee99da248d37d84f73c9ecb38608fc0d8b2709872290a3f43b244e'
+#})
+
+
+  #config.action_controller.session_store = :active_record_store
 end

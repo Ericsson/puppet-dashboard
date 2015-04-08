@@ -32,4 +32,3 @@
 //= require application
 //= require ajax_helper
 //= require validation_response
-

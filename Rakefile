@@ -60,7 +60,6 @@ begin
   require 'rails'
   require(File.join(File.dirname(__FILE__), 'config', 'boot'))
   require File.expand_path('../config/application', __FILE__)
-
   PuppetDashboard::Application.load_tasks
 rescue LoadError
   STDERR.puts "Warning: Rails rake tasks currently unavailable because we can't find the 'rails' gem"

@@ -7,7 +7,7 @@
     %meta{ :content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type" }
 
     = stylesheet_link_tag 'application'
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'jquery.min', 'application','accounts'
 
     :javascript
       var relative_url_root = '#{ActionController::Base.relative_url_root}';
@@ -27,7 +27,7 @@
       #header
         = render 'shared/global_nav'
       #content
-        - [:success, :warning, :failure, :notice, :alert].each do |type|
+        - [:success, :warning, :failure, :notice, :alert, :error].each do |type|
           - if message = flash[type]
             - type = :warning if type == :alert
             %div.section#flash{:class => type}

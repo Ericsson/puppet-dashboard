@@ -8,6 +8,8 @@ gem 'i18n'                , '~> 0.6.0' # support ruby 1.8.7
 
 gem 'thin'
 gem 'rack'
+gem 'minitest'
+gem 'net-ldap', '0.11'
 
 gem 'daemons'
 gem 'json_pure'

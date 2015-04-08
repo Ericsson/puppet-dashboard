@@ -11,31 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141217071943) do
-
-  postgres = ActiveRecord::Base.connection.adapter_name.downcase =~ /postgres/
+ActiveRecord::Schema.define(:version => 20150227063346) do
 
   create_table "delayed_job_failures", :force => true do |t|
     t.string   "summary"
-    t.text     "details"
-    t.boolean  "read",       :default => false, :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.binary   "details",    :limit => 2147483647
+    t.boolean  "read",                             :default => false, :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.text     "backtrace"
   end
 
   create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",                       :default => 0
-    t.integer  "attempts",                       :default => 0
-    t.text     "handler",    :limit => 16777216			unless postgres
-    t.text     "handler"					if postgres
+    t.integer  "priority",                         :default => 0
+    t.integer  "attempts",                         :default => 0
+    t.binary   "handler",    :limit => 2147483647
     t.text     "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.string   "locked_by"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.string   "queue"
   end
 
@@ -64,9 +61,9 @@ ActiveRecord::Schema.define(:version => 20141217071943) do
 
   create_table "node_classes", :force => true do |t|
     t.string   "name"
-    t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   create_table "node_group_class_memberships", :force => true do |t|
@@ -101,14 +98,13 @@ ActiveRecord::Schema.define(:version => 20141217071943) do
 
   create_table "node_groups", :force => true do |t|
     t.string   "name"
-    t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   create_table "nodes", :force => true do |t|
     t.string   "name"
-    t.string   "environment"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -117,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20141217071943) do
     t.string   "status"
     t.boolean  "hidden",                 :default => false
     t.integer  "last_inspect_report_id"
+    t.string   "environment"
   end
 
   add_index "nodes", ["last_apply_report_id"], :name => "index_nodes_on_last_apply_report_id"
@@ -124,9 +121,9 @@ ActiveRecord::Schema.define(:version => 20141217071943) do
 
   create_table "old_reports", :force => true do |t|
     t.integer  "node_id"
-    t.text     "report"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.text     "report",     :limit => 16777215
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "host"
     t.datetime "time"
     t.string   "status"
@@ -142,19 +139,16 @@ ActiveRecord::Schema.define(:version => 20141217071943) do
   end
 
   add_index "parameters", ["parameterable_id", "parameterable_type", "key"], :name => "index_parameters_multi"
+  add_index "parameters", ["parameterable_type", "parameterable_id"], :name => "index_parameters_on_parameterable_type_and_parameterable_id"
 
   create_table "report_logs", :force => true do |t|
-    t.integer  "report_id",                :null => false
+    t.integer  "report_id", :null => false
     t.string   "level"
-    t.text     "message",   :limit => 255			unless postgres
-    t.text     "message"					if postgres
-    t.text     "source",    :limit => 255			unless postgres
-    t.text     "source"						if postgres
-    t.text     "tags",      :limit => 255			unless postgres
-    t.text     "tags"						if postgres
+    t.text     "message"
+    t.text     "source"
+    t.text     "tags"
     t.datetime "time"
-    t.text     "file",      :limit => 255			unless postgres
-    t.text     "file"						if postgres
+    t.text     "file"
     t.integer  "line"
   end
 
@@ -174,35 +168,28 @@ ActiveRecord::Schema.define(:version => 20141217071943) do
   add_index "reports", ["time", "node_id", "status"], :name => "index_reports_on_time_and_node_id_and_status"
 
   create_table "resource_events", :force => true do |t|
-    t.integer  "resource_status_id",                :null => false
-    t.text     "previous_value",     :limit => 255		unless postgres
-    t.text     "previous_value"					if postgres
-    t.text     "desired_value",      :limit => 255		unless postgres
-    t.text     "desired_value"					if postgres
-    t.text     "message",            :limit => 255		unless postgres
-    t.text     "message"					if postgres
+    t.integer  "resource_status_id",                       :null => false
+    t.text     "previous_value"
+    t.text     "desired_value"
+    t.binary   "message",            :limit => 2147483647
     t.string   "name"
     t.string   "property"
     t.string   "status"
     t.datetime "time"
-    t.text     "historical_value",   :limit => 255		unless postgres
-    t.text     "historical_value"				if postgres
+    t.text     "historical_value"
     t.boolean  "audited"
   end
 
   add_index "resource_events", ["resource_status_id"], :name => "index_resource_events_on_resource_status_id"
 
   create_table "resource_statuses", :force => true do |t|
-    t.integer  "report_id",                                                       :null => false
+    t.integer  "report_id",                                        :null => false
     t.string   "resource_type"
-    t.text     "title",             :limit => 255		unless postgres
-    t.text     "title"						if postgres
-    t.decimal  "evaluation_time",                  :precision => 12, :scale => 6
-    t.text     "file",              :limit => 255		unless postgres
-    t.text     "file"						if postgres
+    t.text     "title"
+    t.decimal  "evaluation_time",   :precision => 12, :scale => 6
+    t.text     "file"
     t.integer  "line"
-    t.text     "tags",              :limit => 255		unless postgres
-    t.text     "tags"						if postgres
+    t.text     "tags"
     t.datetime "time"
     t.integer  "change_count"
     t.integer  "out_of_sync_count"
@@ -212,6 +199,17 @@ ActiveRecord::Schema.define(:version => 20141217071943) do
   end
 
   add_index "resource_statuses", ["report_id"], :name => "index_resource_statuses_on_report_id"
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "timeline_events", :force => true do |t|
     t.string   "event_type"
@@ -227,5 +225,20 @@ ActiveRecord::Schema.define(:version => 20141217071943) do
 
   add_index "timeline_events", ["secondary_subject_id", "secondary_subject_type"], :name => "index_timeline_events_secondary"
   add_index "timeline_events", ["subject_id", "subject_type"], :name => "index_timeline_events_primary"
+
+  create_table "users", :force => true do |t|
+    t.string   "first_name",                                                 :null => false
+    t.string   "last_name"
+    t.integer  "user_type",                               :default => 0,     :null => false
+    t.string   "username"
+    t.string   "email"
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.string   "remember_token"
+    t.datetime "remember_token_expires_at"
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+    t.boolean  "is_login",                                :default => false
+  end
 
 end

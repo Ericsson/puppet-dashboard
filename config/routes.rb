@@ -19,6 +19,18 @@ PuppetDashboard::Application.routes do
       end
     end
 
+
+   resources :accounts do
+    member do
+      get :reset_password
+      put :update_password
+      get :reset_password_automatically
+    end
+   collection do
+      get :search
+   end
+  end
+
     resources :nodes do
       member do
         put :hide
@@ -57,6 +69,7 @@ PuppetDashboard::Application.routes do
     end
   end
 
+  resource :session
   resources :node_group_memberships, :as => :memberships
 
   match 'files/:action/:file1/:file2' => 'files#:action'

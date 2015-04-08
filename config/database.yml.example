@@ -45,22 +45,22 @@
 # 
 production:
   database: dashboard_production
-  username: dashboard
-  password:
+  username: root
+  password: 
   encoding: utf8
-  adapter: postgresql
+  adapter: mysql2
 
 development:
   database: dashboard_development
-  username: dashboard
-  password:
+  username: root
+  password: 
   encoding: utf8
-  adapter: postgresql
+  adapter: mysql2
 
 test:
   database: dashboard_test
-  username: dashboard
-  password:
+  username: root
+  password: 
   encoding: utf8
-  adapter: postgresql
+  adapter: mysql2
 
